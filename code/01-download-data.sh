@@ -3,6 +3,6 @@
 ## Download data from PubMed
 
 esearch -db pubmed -query "antimicrobial resistance"[Title] |
-efetch -format xml > raw/antimicrobial_resistance.xml
+efetch -format xml > data/raw/antimicrobial_resistance.xml
 
 echo "search complete"
