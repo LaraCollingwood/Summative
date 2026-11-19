@@ -8,15 +8,15 @@ Note: currently incomplete
 
 ## 1. Cloning the git repository
 
-To clone the contents of this git repository, log into BluePebble, nagivate into your desired directory and run this command in terminal:
+To clone the contents of this git repository, log into BluePebble, nagivate into your desired directory and run this command in terminal.
 
 ```
 git clone git@github.com:LaraCollingwood/Summative.git
 ```
 
-## 2. Activate the conda envriroment
+## 2. Activate the conda environment
 
-To activate the environment, run:
+To activate the environment, run this in terminal.
 ```
 conda env create -f environment.yml
 conda activate env_2872299
