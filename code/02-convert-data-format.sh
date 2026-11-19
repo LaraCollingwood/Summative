@@ -12,13 +12,13 @@
 # save as a file
 {
     # Create header
-    printf "PMID\tTitle\tAbstract\tJournal\tYearCompleted\n"
+    printf "PMID\tTitle\tAbstract\tJournal\tYearPublished\n"
 
     xtract -input data/raw/antimicrobial_resistance.xml \
         -pattern PubmedArticle \
-        -element PMID ArticleTitle AbstractText Title DateCompleted\
-        -block DateCompleted -element Year
-        
+        -element PMID ArticleTitle AbstractText Title\
+        -block PubDate -element Year
+
 } > data/clean/antimicrobial_resistance.tsv
 
 echo "xml to tsv conversion complete"
