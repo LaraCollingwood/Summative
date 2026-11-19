@@ -1,0 +1,11 @@
+name: env_2872299
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.4.1
+  - r-tidyverse=2.0.0
+  - snakemake=7.26
+  
+  
