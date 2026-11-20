@@ -3,22 +3,50 @@
 ## Converts the downloaded xml data into a tsv format, keeping only relevent elements.
 ##
 ## Requires: data/raw/antimicrobial_resistance.xml
-## Creates: data/clean/antimicrobial_resistance.tsv
+## Creates: 
+##  - data/clean/antimicrobial_resistance_no_abstract.tsv
+##  - data/clean/antimicrobial_resistance_abstract.tsv
+
 
 # Input the xml file of articles
 # say it is a PUbMed article format
 # extract specific elements
-# Year completed must be added seperatedly because there are two "year"s, one for DataCompleted and one for DateRevised
 # save as a file
+
 {
     # Create header
-    printf "PMID\tTitle\tAbstract\tJournal\tYearPublished\n"
+    printf "PMID\tTitle\tJournal\tYearPublished\tPublicationType\n"
 
     xtract -input data/raw/antimicrobial_resistance.xml \
         -pattern PubmedArticle \
-        -element PMID ArticleTitle AbstractText Title\
-        -block PubDate -element Year
+        -def "NA" \
+        -sep " "\
+        -element  MedlineCitation/PMID \
+        -element ArticleTitle \
+        -element Journal/Title \
+        -element PubDate/Year \
+        -element PublicationType
 
-} > data/clean/antimicrobial_resistance.tsv
+} > data/clean/antimicrobial_resistance_no_abstract.tsv
 
-echo "xml to tsv conversion complete"
+
+
+# Abstracts are extracted seperately due to formating issues. 
+# A single column tsv is created, containing both PMID and the abstract text.
+
+{
+    # Create header
+    printf "PMID_Abstract\n"
+
+    xtract -input data/raw/antimicrobial_resistance.xml \
+        -pattern PubmedArticle \
+        -def "NA" \
+        -tab "|" \
+        -sep " " \
+        -element MedlineCitation/PMID \
+        -element Abstract/AbstractText
+           
+} > data/clean/antimicrobial_resistance_abstract.tsv
+
+
+echo "xml to tsv conversion complete."
