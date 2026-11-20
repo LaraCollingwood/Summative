@@ -6,6 +6,7 @@
 # load libraries
 library(tidyverse)
 
+# prevent Rplots.pdf from being generated
 pdf(NULL) 
 
 # read in article data
@@ -18,3 +19,5 @@ articles_per_year |>
 
 # save plot
 ggsave("results/articles_per_year_plot.png")
+
+cat("Plot created.")

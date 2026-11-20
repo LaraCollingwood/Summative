@@ -17,3 +17,5 @@ articles_per_year <- article_data |>
 
 # save results
 readr::write_tsv(articles_per_year, "data/clean/articles_per_year.tsv")
+
+cat("Data processed.")

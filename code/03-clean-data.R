@@ -28,3 +28,5 @@ article_data <- article_data |>
 
 # save cleaned data as a new tsv
 readr::write_tsv(article_data, "data/clean/antimicrobial_resistance_clean.tsv")
+
+cat("Data cleaned.")
