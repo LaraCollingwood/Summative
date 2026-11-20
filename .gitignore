@@ -1,4 +1,5 @@
 # Sensitive data
+logs/*
 data/*
 results/*
 rough_work/*
