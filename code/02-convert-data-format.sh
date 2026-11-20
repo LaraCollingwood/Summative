@@ -36,7 +36,7 @@
 
 {
     # Create header
-    printf "PMID_Abstract\n"
+    printf "PMID|Abstract\n"
 
     xtract -input data/raw/antimicrobial_resistance.xml \
         -pattern PubmedArticle \
