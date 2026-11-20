@@ -6,6 +6,8 @@
 # load libraries
 library(tidyverse)
 
+pdf(NULL) 
+
 # read in article data
 articles_per_year <- readr::read_tsv("data/clean/articles_per_year.tsv")
 
