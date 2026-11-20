@@ -8,6 +8,8 @@
 ##  - data/clean/antimicrobial_resistance_no_abstract.tsv
 ##  - data/clean/antimicrobial_resistance_abstract.tsv
 
+# Time how long script takes to run
+SECONDS=0
 
 # Input the xml file of articles
 # say it is a PUbMed article format
@@ -51,3 +53,4 @@
 
 
 echo "xml to tsv conversion complete."
+echo "Run time: ${SECONDS}s"
