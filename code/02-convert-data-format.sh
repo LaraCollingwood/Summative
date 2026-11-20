@@ -2,7 +2,8 @@
 
 ## Converts the downloaded xml data into a tsv format, keeping only relevent elements.
 ##
-## Requires: data/raw/antimicrobial_resistance.xml
+## Requires: 
+##  - data/raw/antimicrobial_resistance.xml
 ## Creates: 
 ##  - data/clean/antimicrobial_resistance_no_abstract.tsv
 ##  - data/clean/antimicrobial_resistance_abstract.tsv
