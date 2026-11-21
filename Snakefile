@@ -17,7 +17,7 @@ rule download_data:
     input:
         "code/01-download-data.sh",
     output:
-        "data/raw/antimicrobial_resistance.xml",
+        "data/raw/pubmed_data.xml",
         "logs/01-download-data.txt"
     shell:
         """
@@ -29,10 +29,10 @@ rule download_data:
 rule convert_data_format:
     input:
         "code/02-convert-data-format.sh",
-        "data/raw/antimicrobial_resistance.xml"
+        "data/raw/pubmed_data.xml"
     output:
-        "data/clean/antimicrobial_resistance_no_abstract.tsv",
-        "data/clean/antimicrobial_resistance_abstract.tsv",
+        "data/clean/pubmed_data_no_abstract.tsv",
+        "data/clean/pubmed_data_abstract.tsv",
         "logs/02-convert-data-format.txt"
     shell:
         """
@@ -43,10 +43,10 @@ rule convert_data_format:
 rule clean_data:
     input:
         "code/03-clean-data.R",
-        "data/clean/antimicrobial_resistance_no_abstract.tsv",
-        "data/clean/antimicrobial_resistance_abstract.tsv"
+        "data/clean/pubmed_data_no_abstract.tsv",
+        "data/clean/pubmed_data_abstract.tsv"
     output:
-        "data/clean/antimicrobial_resistance_clean.tsv",
+        "data/clean/pubmed_data_clean.tsv",
         "logs/03-clean-data.txt"
     shell:
         """
@@ -56,7 +56,7 @@ rule clean_data:
 rule simple_process_data:
     input:
         "code/04-simple-process-data.R",
-        "data/clean/antimicrobial_resistance_clean.tsv"
+        "data/clean/pubmed_data_clean.tsv"
     output:
         "data/clean/articles_per_year.tsv",
         "logs/04-simple-process-data.txt"

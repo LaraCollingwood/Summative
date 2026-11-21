@@ -3,10 +3,10 @@
 ## Converts the downloaded xml data into a tsv format, keeping only relevent elements.
 ##
 ## Requires: 
-##  - data/raw/antimicrobial_resistance.xml
+##  - data/raw/pubmed_data.xml
 ## Creates: 
-##  - data/clean/antimicrobial_resistance_no_abstract.tsv
-##  - data/clean/antimicrobial_resistance_abstract.tsv
+##  - data/clean/pubmed_data_no_abstract.tsv
+##  - data/clean/pubmed_data_abstract.tsv
 
 # Time how long script takes to run
 SECONDS=0
@@ -20,7 +20,7 @@ SECONDS=0
     # Create header
     printf "PMID\tTitle\tJournal\tYearPublished\tPublicationType\n"
 
-    xtract -input data/raw/antimicrobial_resistance.xml \
+    xtract -input data/raw/pubmed_data.xml \
         -pattern PubmedArticle \
         -def "NA" \
         -sep " "\
@@ -30,7 +30,7 @@ SECONDS=0
         -element PubDate/Year \
         -element PublicationType
 
-} > data/clean/antimicrobial_resistance_no_abstract.tsv
+} > data/clean/pubmed_data_no_abstract.tsv
 
 
 
@@ -41,7 +41,7 @@ SECONDS=0
     # Create header
     printf "PMID|Abstract\n"
 
-    xtract -input data/raw/antimicrobial_resistance.xml \
+    xtract -input data/raw/pubmed_data.xml \
         -pattern PubmedArticle \
         -def "NA" \
         -tab "|" \
@@ -49,7 +49,7 @@ SECONDS=0
         -element MedlineCitation/PMID \
         -element Abstract/AbstractText
            
-} > data/clean/antimicrobial_resistance_abstract.tsv
+} > data/clean/pubmed_data_abstract.tsv
 
 
 echo "xml to tsv conversion complete."

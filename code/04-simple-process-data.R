@@ -1,13 +1,13 @@
 ## Create a file of the number of articles per year
 ##
-## Requires: data/clean/antimicrobial_resistance_clean.tsv
+## Requires: data/clean/pubmed_data_clean.tsv
 ## Creates: data/clean/articles_per_year.tsv
 
 # load libraries
 library(tidyverse)
 
 # read in article data
-article_data <- readr::read_tsv("data/clean/antimicrobial_resistance_clean.tsv")
+article_data <- readr::read_tsv("data/clean/pubmed_data_clean.tsv")
 
 # create table of articles written per year
 articles_per_year <- article_data |> 
