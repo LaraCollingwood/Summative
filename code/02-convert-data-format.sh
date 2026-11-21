@@ -7,7 +7,6 @@
 ## Creates: 
 ##  - data/clean/pubmed_data_no_abstract.tsv
 ##  - data/clean/pubmed_data_abstract.tsv
-##  - data/clean/pubmed_data_mesh_headings.tsv
 
 # Time how long script takes to run
 SECONDS=0
@@ -51,19 +50,6 @@ SECONDS=0
         -element Abstract/AbstractText
            
 } > data/clean/pubmed_data_abstract.tsv
-
-
-# Collect MeSH data
-{
-    # Create header
-    printf "PMID\tMesh\n"
-
-    xtract -input data/raw/pubmed_data.xml \
-        -pattern PubmedArticle \
-        -element  MedlineCitation/PMID \
-        -block MeshHeading -tab "|" -sep ";" -element DescriptorName,QualifierName\
-              
-} > data/clean/pubmed_data_mesh_headings.tsv
 
 
 echo "xml to tsv conversion complete."
