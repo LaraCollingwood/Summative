@@ -20,64 +20,64 @@ rule download_data:
     input:
         "code/01-download-data.sh",
     output:
-        expand("data/raw/pubmed_data_{decade}.xml", decade=config["decade"]),
+        "data/raw/pubmed_data_{decade}.xml",
         #"logs/01-download-data.txt"
     shell:
         """
         mkdir -p logs
         mkdir -p data/raw
-        bash code/01-download-data.sh {config[decade]} #> logs/01-download-data.txt
+        bash code/01-download-data.sh {wildcards.decade} #> logs/01-download-data.txt
         """
 
 rule convert_data_format:
     input:
         "code/02-convert-data-format.sh",
-        expand("data/raw/pubmed_data_{decade}.xml", decade=config["decade"])
+        "data/raw/pubmed_data_{decade}.xml"
     output:
-        expand("data/clean/pubmed_data_no_abstract_{decade}.tsv", decade=config["decade"]),
-        expand("data/clean/pubmed_data_abstract_{decade}.tsv", decade=config["decade"]),
+        "data/clean/pubmed_data_no_abstract_{decade}.tsv",
+        "data/clean/pubmed_data_abstract_{decade}.tsv",
         #"logs/02-convert-data-format.txt"
     shell:
         """
         mkdir -p data/clean
-        bash code/02-convert-data-format.sh {config[decade]} #> logs/02-convert-data-format.txt
+        bash code/02-convert-data-format.sh {wildcards.decade} #> logs/02-convert-data-format.txt
         """
 
 rule clean_data:
     input:
         "code/03-clean-data.R",
-        expand("data/clean/pubmed_data_no_abstract_{decade}.tsv", decade=config["decade"]),
-        expand("data/clean/pubmed_data_abstract_{decade}.tsv", decade=config["decade"])
+        "data/clean/pubmed_data_no_abstract_{decade}.tsv",
+        "data/clean/pubmed_data_abstract_{decade}.tsv"
     output:
-        expand("data/clean/pubmed_data_clean_{decade}.tsv", decade=config["decade"]),
+        "data/clean/pubmed_data_clean_{decade}.tsv",
         #"logs/03-clean-data.txt"
     shell:
         """
-        Rscript code/03-clean-data.R {config[decade]} #> logs/03-clean-data.txt
+        Rscript code/03-clean-data.R {wildcards.decade} #> logs/03-clean-data.txt
         """
 
 rule simple_process_data:
     input:
         "code/04-simple-process-data.R",
-        expand("data/clean/pubmed_data_clean_{decade}.tsv", decade=config["decade"])
+        "data/clean/pubmed_data_clean_{decade}.tsv"
     output:
-        expand("data/clean/articles_per_year_{decade}.tsv", decade=config["decade"]),
+        "data/clean/articles_per_year_{decade}.tsv",
         #"logs/04-simple-process-data.txt"
     shell:
         """
-        Rscript code/04-simple-process-data.R {config[decade]} #> logs/04-simple-process-data.txt
+        Rscript code/04-simple-process-data.R {wildcards.decade} #> logs/04-simple-process-data.txt
         """
 
 rule simple_plot_data:
     input:
         "code/05-simple-plot-data.R",
-        expand("data/clean/articles_per_year_{decade}.tsv", decade=config["decade"])
+        "data/clean/articles_per_year_{decade}.tsv"
     output:
-        expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"]),
+        "results/articles_per_year_plot_{decade}.png",
         #"logs/05-simple-plot-data.txt"
     shell:
         """
-        Rscript code/05-simple-plot-data.R {config[decade]} #> logs/05-simple-plot-data.txt
+        Rscript code/05-simple-plot-data.R {wildcards.decade} #> logs/05-simple-plot-data.txt
         """
 
 # Cleaning ---------------------------------------------------------------------------
