@@ -3,3 +3,4 @@ logs/*
 data/*
 results/*
 rough_work/*
+.snakemake
