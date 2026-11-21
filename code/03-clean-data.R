@@ -26,9 +26,13 @@ article_data <- article_data |>
     mutate(PMID = as.character(PMID)) |> 
     left_join(abstract_data, by="PMID")
 
-# remove [] and ' from the titles
+
 article_data <- article_data |> 
-    mutate(Title = str_remove_all(Title, "\\[|\\]|'"))
+    mutate(
+        # remove [] and ' from the titles
+        Title = str_remove_all(Title, "\\[|\\]|'"),
+        # create decade column
+        decade = paste0( substr( as.character(YearPublished), 1,3), "0s"))
 
 # save cleaned data as a new tsv
 readr::write_tsv(article_data, "data/clean/pubmed_data_clean.tsv")
