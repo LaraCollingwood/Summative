@@ -7,12 +7,14 @@
 ## - data/clean/pubmed_data_clean.tsv
 ## - data/clean/pubmed_data_clean.tsv
 
+decade <- "2010s"
+
 # load libraries
 library(tidyverse)
 
 # read in article data
-article_data <- readr::read_tsv("data/clean/pubmed_data_no_abstract.tsv")
-abstract_data <- readr::read_tsv("data/clean/pubmed_data_abstract.tsv")
+article_data <- readr::read_tsv(paste0("data/clean/pubmed_data_no_abstract_",decade,".tsv"))
+abstract_data <- readr::read_tsv(paste0("data/clean/pubmed_data_abstract_",decade,".tsv"))
 
 # Create article data -------------------------------------------------------------------------------------
 
@@ -33,8 +35,9 @@ article_data <- article_data |>
         Decade = paste0( substr( as.character(YearPublished), 1,3), "0s"))
 
 # save cleaned data as a new tsv
-readr::write_tsv(article_data, "data/clean/pubmed_data_clean.tsv")
+readr::write_tsv(article_data, paste0("data/clean/pubmed_data_clean_",decade,".tsv"))
 
 
 
 cat("Data cleaned.")
+cat(paste0("Decade: ",decade))

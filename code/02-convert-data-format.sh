@@ -8,6 +8,8 @@
 ##  - data/clean/pubmed_data_no_abstract.tsv
 ##  - data/clean/pubmed_data_abstract.tsv
 
+decade="2010s"
+
 # Time how long script takes to run
 SECONDS=0
 
@@ -20,7 +22,7 @@ SECONDS=0
     # Create header
     printf "PMID\tTitle\tJournal\tYearPublished\tPublicationType\n"
 
-    xtract -input data/raw/pubmed_data.xml \
+    xtract -input data/raw/pubmed_data_${decade}.xml \
         -pattern PubmedArticle \
         -def "NA" \
         -sep " "\
@@ -30,7 +32,7 @@ SECONDS=0
         -element PubDate/Year \
         -element PublicationType 
 
-} > data/clean/pubmed_data_no_abstract.tsv
+} > data/clean/pubmed_data_no_abstract_${decade}.tsv
 
 
 
@@ -41,7 +43,7 @@ SECONDS=0
     # Create header
     printf "PMID|Abstract\n"
 
-    xtract -input data/raw/pubmed_data.xml \
+    xtract -input data/raw/pubmed_data_${decade}.xml \
         -pattern PubmedArticle \
         -def "NA" \
         -tab "|" \
@@ -49,8 +51,9 @@ SECONDS=0
         -element MedlineCitation/PMID \
         -element Abstract/AbstractText
            
-} > data/clean/pubmed_data_abstract.tsv
+} > data/clean/pubmed_data_abstract_${decade}.tsv
 
 
 echo "xml to tsv conversion complete."
+echo "Decade: ${decade}"
 echo "Run time: ${SECONDS}s"

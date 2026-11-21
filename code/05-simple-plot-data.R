@@ -3,6 +3,8 @@
 ## Requires: data/clean/articles_per_year.tsv
 ## Creates: results/articles_per_year_plot.png
 
+decade <- "2010s"
+
 # load libraries
 library(tidyverse)
 
@@ -10,7 +12,7 @@ library(tidyverse)
 pdf(NULL) 
 
 # read in article data
-articles_per_year <- readr::read_tsv("data/clean/articles_per_year.tsv")
+articles_per_year <- readr::read_tsv(paste0("data/clean/articles_per_year_",decade,".tsv"))
 
 # create plot
 articles_per_year |> 
@@ -18,6 +20,7 @@ articles_per_year |>
   geom_point()
 
 # save plot
-ggsave("results/articles_per_year_plot.png")
+ggsave(paste0("results/articles_per_year_plot_",decade,".png"))
 
 cat("Plot created.")
+cat(paste0("Decade: ",decade))
