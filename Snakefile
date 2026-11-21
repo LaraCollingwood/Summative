@@ -1,6 +1,9 @@
+# -*- mode: snakemake -*-
+configfile: "config.yml"
+
 rule all:
  input:
-    "results/articles_per_year_plot.png"
+    expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"])
 
 rule setup:
     "create all directories"
@@ -17,64 +20,64 @@ rule download_data:
     input:
         "code/01-download-data.sh",
     output:
-        "data/raw/pubmed_data.xml",
-        "logs/01-download-data.txt"
+        expand("data/raw/pubmed_data_{decade}.xml", decade=config["decade"]),
+        #"logs/01-download-data.txt"
     shell:
         """
         mkdir -p logs
         mkdir -p data/raw
-        bash code/01-download-data.sh > logs/01-download-data.txt
+        bash code/01-download-data.sh {config[decade]} #> logs/01-download-data.txt
         """
 
 rule convert_data_format:
     input:
         "code/02-convert-data-format.sh",
-        "data/raw/pubmed_data.xml"
+        expand("data/raw/pubmed_data_{decade}.xml", decade=config["decade"])
     output:
-        "data/clean/pubmed_data_no_abstract.tsv",
-        "data/clean/pubmed_data_abstract.tsv",
-        "logs/02-convert-data-format.txt"
+        expand("data/clean/pubmed_data_no_abstract_{decade}.tsv", decade=config["decade"]),
+        expand("data/clean/pubmed_data_abstract_{decade}.tsv", decade=config["decade"]),
+        #"logs/02-convert-data-format.txt"
     shell:
         """
         mkdir -p data/clean
-        bash code/02-convert-data-format.sh > logs/02-convert-data-format.txt
+        bash code/02-convert-data-format.sh {config[decade]} #> logs/02-convert-data-format.txt
         """
 
 rule clean_data:
     input:
         "code/03-clean-data.R",
-        "data/clean/pubmed_data_no_abstract.tsv",
-        "data/clean/pubmed_data_abstract.tsv"
+        expand("data/clean/pubmed_data_no_abstract_{decade}.tsv", decade=config["decade"]),
+        expand("data/clean/pubmed_data_abstract_{decade}.tsv", decade=config["decade"])
     output:
-        "data/clean/pubmed_data_clean.tsv",
-        "logs/03-clean-data.txt"
+        expand("data/clean/pubmed_data_clean_{decade}.tsv", decade=config["decade"]),
+        #"logs/03-clean-data.txt"
     shell:
         """
-        Rscript code/03-clean-data.R > logs/03-clean-data.txt
+        Rscript code/03-clean-data.R {config[decade]} #> logs/03-clean-data.txt
         """
 
 rule simple_process_data:
     input:
         "code/04-simple-process-data.R",
-        "data/clean/pubmed_data_clean.tsv"
+        expand("data/clean/pubmed_data_clean_{decade}.tsv", decade=config["decade"])
     output:
-        "data/clean/articles_per_year.tsv",
-        "logs/04-simple-process-data.txt"
+        expand("data/clean/articles_per_year_{decade}.tsv", decade=config["decade"]),
+        #"logs/04-simple-process-data.txt"
     shell:
         """
-        Rscript code/04-simple-process-data.R > logs/04-simple-process-data.txt
+        Rscript code/04-simple-process-data.R {config[decade]} #> logs/04-simple-process-data.txt
         """
 
 rule simple_plot_data:
     input:
         "code/05-simple-plot-data.R",
-        "data/clean/articles_per_year.tsv"
+        expand("data/clean/articles_per_year_{decade}.tsv", decade=config["decade"])
     output:
-        "results/articles_per_year_plot.png",
-        "logs/05-simple-plot-data.txt"
+        expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"]),
+        #"logs/05-simple-plot-data.txt"
     shell:
         """
-        Rscript code/05-simple-plot-data.R > logs/05-simple-plot-data.txt
+        Rscript code/05-simple-plot-data.R {config[decade]} #> logs/05-simple-plot-data.txt
         """
 
 # Cleaning ---------------------------------------------------------------------------

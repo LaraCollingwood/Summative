@@ -4,9 +4,9 @@
 ##
 ## Output: data/raw/pubmed_data.xml
 
-decade="2010s"
-start_date=2010
-end_date=2012
+decade=$1
+start_date=${decade%s}
+end_date=$((start_date + 2)) ### CHANGE THIS
 
 # Time how long script takes to run
 SECONDS=0

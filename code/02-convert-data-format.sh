@@ -8,7 +8,7 @@
 ##  - data/clean/pubmed_data_no_abstract.tsv
 ##  - data/clean/pubmed_data_abstract.tsv
 
-decade="2010s"
+decade=$1
 
 # Time how long script takes to run
 SECONDS=0

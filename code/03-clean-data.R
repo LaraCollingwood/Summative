@@ -7,7 +7,10 @@
 ## - data/clean/pubmed_data_clean.tsv
 ## - data/clean/pubmed_data_clean.tsv
 
-decade <- "2010s"
+
+# define arguments
+args = 	commandArgs(trailingOnly = TRUE)
+decade = args[1]
 
 # load libraries
 library(tidyverse)
