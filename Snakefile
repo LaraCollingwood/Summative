@@ -43,17 +43,17 @@ rule convert_data_format:
         bash code/02-convert-data-format.sh {wildcards.decade} #> logs/02-convert-data-format.txt
         """
 
-rule clean_data:
+rule simple_clean_data:
     input:
-        "code/03-clean-data.R",
+        "code/03-simple-clean-data.R",
         "data/clean/pubmed_data_no_abstract_{decade}.tsv",
         "data/clean/pubmed_data_abstract_{decade}.tsv"
     output:
         "data/clean/pubmed_data_clean_{decade}.tsv",
-        #"logs/03-clean-data.txt"
+        #"logs/03-simple-clean-data.txt"
     shell:
         """
-        Rscript code/03-clean-data.R {wildcards.decade} #> logs/03-clean-data.txt
+        Rscript code/03-simple-clean-data.R {wildcards.decade} #> logs/03-simple-clean-data.txt
         """
 
 rule simple_process_data:
