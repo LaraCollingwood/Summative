@@ -32,7 +32,7 @@ article_data <- article_data |>
         # remove [] and ' from the titles
         Title = str_remove_all(Title, "\\[|\\]|'"),
         # create decade column
-        decade = paste0( substr( as.character(YearPublished), 1,3), "0s"))
+        Decade = paste0( substr( as.character(YearPublished), 1,3), "0s"))
 
 # save cleaned data as a new tsv
 readr::write_tsv(article_data, "data/clean/pubmed_data_clean.tsv")
