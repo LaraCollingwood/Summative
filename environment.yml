@@ -6,6 +6,9 @@ channels:
 dependencies:
   - r-base=4.4.1
   - r-tidyverse=2.0.0
+  - r-tidytext=0.4.3
+  - r-topicmodels=0.2.17
+  - r-reshape2=1.4.5
   - snakemake=7.26
   
   
