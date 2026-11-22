@@ -16,9 +16,25 @@ git clone https://github.com/LaraCollingwood/Summative.git
 
 ## 2. Activate the conda environment
 
+Activate conda
+```
+source ~/initConda.sh
+```
+
+Nagivate into the Summative direcory using
+```
+cd Summative
+```
+
 To activate the environment, run this in terminal.
 ```
 conda env create -f environment.yml
 conda activate env_2872299
 ```
 
+# 3. Run the SnakeMake pipeline
+
+Run the SnakeMake pipeline with 
+```
+snakemake --profile .
+```
