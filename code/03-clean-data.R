@@ -29,7 +29,7 @@ abstract_data <- abstract_data |>
 # These words are commonly used throughout all research, and so will not be included in topic modelling
 common_words <- tibble(word=c("antimicrobial","resistance","resistant","amr","antibiotic","antibiotics",
                               "study","isolates","patient","patients","health","data","analysis","identified",
-                              "detected","samples"))
+                              "detected","samples","na"))
 
 word_count <- abstract_data |> 
     unnest_tokens(word, Abstract) |> 
