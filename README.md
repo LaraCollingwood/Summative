@@ -21,7 +21,7 @@ Activate conda
 source ~/initConda.sh
 ```
 
-Nagivate into the Summative direcory using
+Nagivate into the Summative directory using
 ```
 cd Summative
 ```
