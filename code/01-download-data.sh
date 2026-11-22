@@ -12,9 +12,13 @@ end_date=$((start_date + 4)) ### CHANGE THIS
 # Time how long script takes to run
 SECONDS=0
 
-# Search PubMed for articles that include "antimicrobial resistance" in the title
-# then save as an xml file Drug Resistance, Microbial [MeSH Terms] OR
-esearch -db pubmed -query "$start_date:$end_date [PDAT] AND (antimicrobial resistance [TITL] OR amr [TITL] OR antibiotic resistance [TITL])" |
+# Search PubMed for articles that include "antimicrobial resistance" in the titleOR antimicrobial resistance [TITL] OR amr [TITL] OR antibiotic resistance [TITL])" 
+# then save as an xml file 
+esearch -db pubmed -query "$start_date:$end_date [PDAT] \
+AND hasabstract \
+AND Journal Article [PTYP] \
+AND eng [LANG] \
+AND Drug Resistance, Microbial [MeSH Terms]" | \
 efetch -format xml > data/raw/pubmed_data_${PUBDATEGR}.xml
 
 echo "Search complete."
