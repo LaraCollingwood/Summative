@@ -7,7 +7,7 @@ cluster:
     --time={resources.time}
     --mem={resources.mem_mb}
     --ntasks-per-node={resources.ntasks}
-    --output ./practical_2/slurm_logs/%j.out
+    --output ./logs/slurm_logs/%j.out
 default-resources:
   - slurm_partition=teach_cpu
   - slurm_account=SSCM040064
