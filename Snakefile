@@ -4,7 +4,6 @@ configfile: "config.yml"
 rule all:
  input:
     "results/trends_plot.png"
-    #expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"])
 
 rule setup:
     "create all directories"
@@ -88,46 +87,6 @@ rule plot_topic_trends:
     shell:
         """
         Rscript code/06-plot-topic-trends.R
-        """
-
-
-# Simple pipeline scripts ----------------------------------------------------------------------
-
-rule simple_clean_data:
-    input:
-        "code/03-simple-clean-data.R",
-        "data/clean/pubmed_data_no_abstract_{decade}.tsv",
-        "data/clean/pubmed_data_abstract_{decade}.tsv"
-    output:
-        "data/clean/pubmed_data_clean_{decade}.tsv",
-        #"logs/03-simple-clean-data.txt"
-    shell:
-        """
-        Rscript code/03-simple-clean-data.R {wildcards.decade} #> logs/03-simple-clean-data.txt
-        """
-
-rule simple_process_data:
-    input:
-        "code/04-simple-process-data.R",
-        "data/clean/pubmed_data_clean_{decade}.tsv"
-    output:
-        "data/clean/articles_per_year_{decade}.tsv",
-        #"logs/04-simple-process-data.txt"
-    shell:
-        """
-        Rscript code/04-simple-process-data.R {wildcards.decade} #> logs/04-simple-process-data.txt
-        """
-
-rule simple_plot_data:
-    input:
-        "code/05-simple-plot-data.R",
-        "data/clean/articles_per_year_{decade}.tsv"
-    output:
-        "results/articles_per_year_plot_{decade}.png",
-        #"logs/05-simple-plot-data.txt"
-    shell:
-        """
-        Rscript code/05-simple-plot-data.R {wildcards.decade} #> logs/05-simple-plot-data.txt
         """
 
 # Cleaning ---------------------------------------------------------------------------
