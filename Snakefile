@@ -3,7 +3,8 @@ configfile: "config.yml"
 
 rule all:
  input:
-    expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"])
+    "results/topic_info.png"
+    #expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"])
 
 rule setup:
     "create all directories"
@@ -42,6 +43,45 @@ rule convert_data_format:
         mkdir -p data/clean
         bash code/02-convert-data-format.sh {wildcards.decade} #> logs/02-convert-data-format.txt
         """
+
+rule clean_data:
+    input:
+        "code/03-clean-data.R",
+        "data/clean/pubmed_data_abstract_{decade}.tsv"
+    output:
+        "data/clean/word_count_{decade}.tsv"
+    shell:
+        """
+        Rscript code/03-clean-data.R {wildcards.decade} 
+        """
+
+rule topic_modelling:
+    input:
+        "code/04-topic-modelling.R",
+        expand("data/clean/word_count_{decade}.tsv", decade=config["decade"])
+    output:
+        "data/clean/decade_topics.tsv",
+        "data/clean/top_words_for_topics.tsv"
+    shell:
+        """
+        Rscript code/04-topic-modelling.R
+        """
+
+rule inspect_topics:
+    input:
+        "code/05-inspect-topics.R",
+        "data/clean/top_words_for_topics.tsv"
+    output:
+        "results/topic_info.png"
+    shell:
+        """
+        Rscript code/05-inspect-topics.R
+        """
+
+
+
+
+# Simple pipeline scripts ----------------------------------------------------------------------
 
 rule simple_clean_data:
     input:
