@@ -16,21 +16,9 @@ rule setup:
         """
 # Running code scripts -----------------------------------------------------------------
 
-rule setup_edirect:
-    input:
-        "code/00-setup-edirect.sh"
-    output:
-        "logs/edirect_setup_complete.txt"
-    shell:
-        """
-        mkdir -p logs 
-        bash code/00-setup-edirect.sh > logs/edirect_setup_complete.txt
-        """
-
 rule download_data:
     input:
-        "code/01-download-data.sh",
-        "logs/edirect_setup_complete.txt"
+        "code/01-download-data.sh"
     output:
         "data/raw/pubmed_data_{PubDateGr}.xml",
         #"logs/01-download-data.txt"

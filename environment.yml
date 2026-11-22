@@ -10,5 +10,6 @@ dependencies:
   - r-topicmodels=0.2.17
   - r-reshape2=1.4.5
   - snakemake=7.26
+  - entrez-direct=26.0
   
   
