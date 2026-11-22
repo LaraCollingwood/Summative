@@ -20,46 +20,46 @@ rule download_data:
     input:
         "code/01-download-data.sh",
     output:
-        "data/raw/pubmed_data_{decade}.xml",
+        "data/raw/pubmed_data_{PubDateGr}.xml",
         #"logs/01-download-data.txt"
     shell:
         """
         mkdir -p logs
         mkdir -p data/raw
-        bash code/01-download-data.sh {wildcards.decade} #> logs/01-download-data.txt
+        bash code/01-download-data.sh {wildcards.PubDateGr} #> logs/01-download-data.txt
         """
 
 rule convert_data_format:
     input:
         "code/02-convert-data-format.sh",
-        "data/raw/pubmed_data_{decade}.xml"
+        "data/raw/pubmed_data_{PubDateGr}.xml"
     output:
-        "data/clean/pubmed_data_no_abstract_{decade}.tsv",
-        "data/clean/abstracts_{decade}.tsv",
+        "data/clean/pubmed_data_no_abstract_{PubDateGr}.tsv",
+        "data/clean/abstracts_{PubDateGr}.tsv",
         #"logs/02-convert-data-format.txt"
     shell:
         """
         mkdir -p data/clean
-        bash code/02-convert-data-format.sh {wildcards.decade} #> logs/02-convert-data-format.txt
+        bash code/02-convert-data-format.sh {wildcards.PubDateGr} #> logs/02-convert-data-format.txt
         """
 
 rule clean_data:
     input:
         "code/03-clean-data.R",
-        "data/clean/abstracts_{decade}.tsv"
+        "data/clean/abstracts_{PubDateGr}.tsv"
     output:
-        "data/clean/word_count_{decade}.tsv"
+        "data/clean/word_count_{PubDateGr}.tsv"
     shell:
         """
-        Rscript code/03-clean-data.R {wildcards.decade} 
+        Rscript code/03-clean-data.R {wildcards.PubDateGr} 
         """
 
 rule topic_modelling:
     input:
         "code/04-topic-modelling.R",
-        expand("data/clean/word_count_{decade}.tsv", decade=config["decade"])
+        expand("data/clean/word_count_{PubDateGr}.tsv", PubDateGr=config["PUBDATEGR"])
     output:
-        "data/clean/decade_topics.tsv",
+        "data/clean/pubdategr_topics.tsv",
         "data/clean/top_words_for_topics.tsv"
     shell:
         """
@@ -81,7 +81,7 @@ rule plot_topic_trends:
     input:
         "code/06-plot-topic-trends.R",
         "results/topic_info.png",
-        "data/clean/decade_topics.tsv"
+        "data/clean/pubdategr_topics.tsv"
     output:
         "results/trends_plot.png"
     shell:

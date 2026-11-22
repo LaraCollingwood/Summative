@@ -1,6 +1,6 @@
 ## Create line plot of trends
 ##
-## Requires: data/clean/decade_topics.tsv
+## Requires: data/clean/pubdategr_topics.tsv
 ## Creates: results/trends_plot.png
 
 library(tidyverse)
@@ -9,16 +9,16 @@ library(tidyverse)
 pdf(NULL) 
 
 # Read in data
-decade_topics <- readr::read_tsv("data/clean/decade_topics.tsv")
+pubdategr_topics <- readr::read_tsv("data/clean/pubdategr_topics.tsv")
 
 # Plot
-decade_topics |>
-    ggplot(aes(x=Decade, y=gamma, colour=as.factor(topic))) +
+pubdategr_topics |>
+    ggplot(aes(x=PubDateGr, y=gamma, colour=as.factor(topic))) +
     geom_line() +
     geom_point() +
     scale_x_continuous(
-        breaks = sort(unique(decade_topics$Decade)),
-        labels = sort(unique(decade_topics$Decade_label))
+        breaks = sort(unique(pubdategr_topics$PubDateGr)),
+        labels = sort(unique(pubdategr_topics$PubDateGr_label))
     ) +
     labs(
         title="Changes in Research Topics in AMR",

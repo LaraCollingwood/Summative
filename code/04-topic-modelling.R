@@ -15,17 +15,17 @@ word_count_all <- map_dfr(files, read_tsv)
 # Creating the model -------------------------------------------------
 
 # Turn the word counts into a matrix
-dtm_matrix <- word_count_all |> cast_dtm(Decade, word, n)
+dtm_matrix <- word_count_all |> cast_dtm(PubDateGr, word, n)
 
 # Create a LDA topic model
 LDA_topic_model <- LDA(dtm_matrix, k=3, control=list(seed=123))
 
-# For each decade, see how well it fits into each topic
-decade_topics <- tidy(LDA_topic_model, matrix="gamma") |>
+# For each publishing date group, see how well it fits into each topic
+pubdategr_topics <- tidy(LDA_topic_model, matrix="gamma") |>
     mutate(
         topic = as.factor(topic),
-        Decade = document,
-        Decade_label = paste0(document,"s")
+        PubDateGr = document,
+        PubDateGr_label = paste0(document,"-",as.numeric(document)+4)
     ) 
 
 
@@ -41,5 +41,5 @@ top_words_for_topics <- word_topics |>
   
 # Save as file --------------------------------------------
 
-readr::write_tsv(decade_topics, "data/clean/decade_topics.tsv")
+readr::write_tsv(pubdategr_topics, "data/clean/pubdategr_topics.tsv")
 readr::write_tsv(top_words_for_topics, "data/clean/top_words_for_topics.tsv")
