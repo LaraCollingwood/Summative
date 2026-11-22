@@ -6,7 +6,7 @@
 ##  - data/raw/pubmed_data.xml
 ## Creates: 
 ##  - data/clean/pubmed_data_no_abstract.tsv
-##  - data/clean/pubmed_data_abstract.tsv
+##  - data/clean/abstracts.tsv
 
 decade=$1
 
@@ -51,7 +51,7 @@ SECONDS=0
         -element MedlineCitation/PMID \
         -element Abstract/AbstractText
            
-} > data/clean/pubmed_data_abstract_${decade}.tsv
+} > data/clean/abstracts_${decade}.tsv
 
 
 echo "xml to tsv conversion complete."

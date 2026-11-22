@@ -1,6 +1,6 @@
 ## Convert abstract data into word counts
 ##
-## Requires: data/clean/pubmed_data_abstract.tsv
+## Requires: data/clean/abstracts.tsv
 ## Creates: data/clean/word_count.tsv
 
 
@@ -12,7 +12,7 @@ args = 	commandArgs(trailingOnly = TRUE)
 decade = args[1]
 
 # read in article data
-abstract_data <- readr::read_tsv(paste0("data/clean/pubmed_data_abstract_",decade,".tsv"))
+abstract_data <- readr::read_tsv(paste0("data/clean/abstracts_",decade,".tsv"))
 
  # Clean up --------------------------------------------------------------------------
 

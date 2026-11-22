@@ -35,7 +35,7 @@ rule convert_data_format:
         "data/raw/pubmed_data_{decade}.xml"
     output:
         "data/clean/pubmed_data_no_abstract_{decade}.tsv",
-        "data/clean/pubmed_data_abstract_{decade}.tsv",
+        "data/clean/abstracts_{decade}.tsv",
         #"logs/02-convert-data-format.txt"
     shell:
         """
@@ -46,7 +46,7 @@ rule convert_data_format:
 rule clean_data:
     input:
         "code/03-clean-data.R",
-        "data/clean/pubmed_data_abstract_{decade}.tsv"
+        "data/clean/abstracts_{decade}.tsv"
     output:
         "data/clean/word_count_{decade}.tsv"
     shell:
