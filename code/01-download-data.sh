@@ -2,11 +2,12 @@
 
 ## Download article data from PubMed 
 ##
+## Input: decade variable
 ## Output: data/raw/pubmed_data.xml
 
 decade=$1
 start_date=${decade%s}
-end_date=$((start_date + 2)) ### CHANGE THIS
+end_date=$((start_date + 4)) ### CHANGE THIS
 
 # Time how long script takes to run
 SECONDS=0

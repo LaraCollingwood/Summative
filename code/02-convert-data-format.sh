@@ -2,6 +2,8 @@
 
 ## Converts the downloaded xml data into a tsv format, keeping only relevent elements.
 ##
+## Input:
+## - decade variable
 ## Requires: 
 ##  - data/raw/pubmed_data.xml
 ## Creates: 

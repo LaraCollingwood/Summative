@@ -1,5 +1,6 @@
 ## Convert abstract data into word counts
 ##
+## Input: decade variable
 ## Requires: data/clean/abstracts.tsv
 ## Creates: data/clean/word_count.tsv
 
