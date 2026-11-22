@@ -5,6 +5,9 @@
 
 library(tidyverse)
 
+# prevent Rplots.pdf from being generated
+pdf(NULL) 
+
 # Read in data
 decade_topics <- readr::read_tsv("data/clean/decade_topics.tsv")
 

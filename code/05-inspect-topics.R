@@ -6,6 +6,9 @@
 library(tidyverse)
 library(tidytext)
 
+# prevent Rplots.pdf from being generated
+pdf(NULL) 
+
 top_words_for_topics <- readr::read_tsv("data/clean/top_words_for_topics.tsv")
 
 top_words_for_topics |> 
