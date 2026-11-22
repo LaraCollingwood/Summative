@@ -34,7 +34,7 @@ decade_topics <- tidy(LDA_topic_model, matrix="gamma") |>
 # For each word, see how well it fits into each topic
 word_topics <- tidy(LDA_topic_model, matrix="beta") 
 
-word_topics |> 
+top_words_for_topics <- word_topics |> 
   group_by(topic) |> 
   slice_max(order_by=beta, n=10)
 
@@ -42,3 +42,4 @@ word_topics |>
 # Save as file --------------------------------------------
 
 readr::write_tsv(decade_topics, "data/clean/decade_topics.tsv")
+readr::write_tsv(top_words_for_topics, "data/clean/top_words_for_topics.tsv")
