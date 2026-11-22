@@ -3,7 +3,7 @@ configfile: "config.yml"
 
 rule all:
  input:
-    "results/topic_info.png"
+    "results/trends_plot.png"
     #expand("results/articles_per_year_plot_{decade}.png", decade=config["decade"])
 
 rule setup:
@@ -78,7 +78,17 @@ rule inspect_topics:
         Rscript code/05-inspect-topics.R
         """
 
-
+rule plot_topic_trends:
+    input:
+        "code/06-plot-topic-trends.R",
+        "results/topic_info.png",
+        "data/clean/decade_topics.tsv"
+    output:
+        "results/trends_plot.png"
+    shell:
+        """
+        Rscript code/06-plot-topic-trends.R
+        """
 
 
 # Simple pipeline scripts ----------------------------------------------------------------------
