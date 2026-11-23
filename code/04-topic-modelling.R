@@ -18,7 +18,7 @@ word_count_all <- map_dfr(files, read_tsv)
 dtm_matrix <- word_count_all |> cast_dtm(PubDateGr, word, n)
 
 # Create a LDA topic model
-LDA_topic_model <- LDA(dtm_matrix, k=3, control=list(seed=123))
+LDA_topic_model <- LDA(dtm_matrix, k=4, control=list(seed=123))
 
 # For each publishing date group, see how well it fits into each topic
 pubdategr_topics <- tidy(LDA_topic_model, matrix="gamma") |>
