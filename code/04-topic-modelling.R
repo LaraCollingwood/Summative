@@ -19,7 +19,7 @@ PMID_pubdategr_id <- word_count_all |> select(PMID, PubDateGr) |> mutate(PMID = 
 dtm_matrix <- word_count_all |> cast_dtm(PMID, word, n)
 
 # Create a LDA topic model
-LDA_topic_model <- LDA(dtm_matrix, k=4, control=list(seed=123))
+LDA_topic_model <- LDA(dtm_matrix, k=6, control=list(seed=123))
 
 # For each abstract, see how well it fits into each topic
 PMID_topics <- tidy(LDA_topic_model, matrix="gamma") |>
@@ -41,7 +41,7 @@ word_topics <- tidy(LDA_topic_model, matrix="beta")
 
 top_words_for_topics <- word_topics |> 
   group_by(topic) |> 
-  slice_max(order_by=beta, n=10)
+  slice_max(order_by=beta, n=20)
 
   
 # Save as file --------------------------------------------
