@@ -14,14 +14,13 @@ pubdategr_topics <- readr::read_tsv("data/clean/pubdategr_topics.tsv")
 # Add labels to topics
 pubdategr_topics <- pubdategr_topics |> 
     mutate(topic_label = case_when(
-        topic==1 ~ "1: label",
-        topic==2 ~ "2: label",
-        topic==3 ~ "3: label",
-        topic==4 ~ "4: label",
-        topic==5 ~ "5: label",
-        topic==6 ~ "6: label",
-        
-    ))
+        topic==1 ~ "1: Livestock",
+        topic==2 ~ "2: Biological\nmechanisms",
+        topic==3 ~ "3: Water and\nthe environment",
+        topic==4 ~ "4: Genomics",
+        topic==5 ~ "5: Resistance\ngene detection",
+        topic==6 ~ "6: Patients",   
+))
 
 # Define colour palette
 colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF","#00D1E0FF")
