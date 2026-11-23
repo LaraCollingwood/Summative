@@ -16,9 +16,8 @@ SECONDS=0
 # then save as an xml file 
 esearch -db pubmed -query "$start_date:$end_date [PDAT] \
 AND hasabstract \
-AND Journal Article [PTYP] \
-AND eng [LANG] \
-AND Drug Resistance, Microbial [MeSH Terms]" | \
+AND (escherichia [TITL] OR coli [TITL]) \
+AND (antimicrobial resistance [TITL] OR amr [TITL] OR antibiotic resistance [TITL] OR antimicrobial-resistant [TITL] OR antibiotic-resistant [TITL])" |
 efetch -format xml > data/raw/pubmed_data_${PUBDATEGR}.xml
 
 echo "Search complete."
