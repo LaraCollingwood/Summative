@@ -40,7 +40,7 @@ common_words <- tibble(word=c(
     "potential", "specific", "common",
     "major", "highly", "single",
     "multiple", "different", "related",
-    "due", "time", "period",
+    "due", "time", "period", "increased",
 
     # Generic research terminology
     "study", "studies", "result", "results",
@@ -49,7 +49,8 @@ common_words <- tibble(word=c(
     "identified", "detected", "collected",
     "tested", "test", "testing",
     "isolate","isolates","isolated",
-    "health",
+    "health", "effect", "ci", "confidence", 
+    "interval",
 
     # General AMR terminology
     "antimicrobial", "antimicrobials",
@@ -70,7 +71,7 @@ word_count <- abstract_data |>
     filter(!str_detect(word, "[0-9]")) |>
     anti_join(stop_words) |> 
     anti_join(common_words) |> 
-    count(PubDateGr, word, sort=TRUE)
+    count(PMID, PubDateGr, word, sort=TRUE)
 
 
 

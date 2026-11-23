@@ -10,23 +10,28 @@ library(reshape2)
 
 # Combine all word counts
 files <- list.files(path = "data/clean/",pattern = "^word_count_.*\\.tsv$",full.names = TRUE)
-word_count_all <- map_dfr(files, read_tsv)
+word_count_all <- map_dfr(files, read_tsv,show_col_types = FALSE)
+PMID_pubdategr_id <- word_count_all |> select(PMID, PubDateGr) |> mutate(PMID = as.character(PMID))
 
 # Creating the model -------------------------------------------------
 
 # Turn the word counts into a matrix
-dtm_matrix <- word_count_all |> cast_dtm(PubDateGr, word, n)
+dtm_matrix <- word_count_all |> cast_dtm(PMID, word, n)
 
 # Create a LDA topic model
 LDA_topic_model <- LDA(dtm_matrix, k=4, control=list(seed=123))
 
-# For each publishing date group, see how well it fits into each topic
-pubdategr_topics <- tidy(LDA_topic_model, matrix="gamma") |>
+# For each abstract, see how well it fits into each topic
+PMID_topics <- tidy(LDA_topic_model, matrix="gamma") |>
     mutate(
         topic = as.factor(topic),
-        PubDateGr = document,
-        PubDateGr_label = paste0(document,"-",as.numeric(document)+4)
+        PMID = document
     ) 
+# attatch the pubdate gr, find the mean gamma of each publishing date group
+pubdategr_topics <- left_join(PMID_topics, PMID_pubdategr_id) |>
+    group_by(PubDateGr, topic) |>
+    summarise(gamma = mean(gamma)) |>
+    mutate(PubDateGr_label = paste0(PubDateGr,"-",as.numeric(PubDateGr)+4))
 
 
 # Get info on the topics ---------------------------------------------
