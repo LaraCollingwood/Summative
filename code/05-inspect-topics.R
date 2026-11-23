@@ -9,11 +9,11 @@ library(tidytext)
 # Prevent Rplots.pdf from being generated
 pdf(NULL) 
 
-# Read in data
-pubdategr_topics <- readr::read_tsv("data/clean/pubdategr_topics.tsv")
+# Read in the data
+top_words_for_topics <- readr::read_tsv("data/clean/top_words_for_topics.tsv")
 
 # Add labels to topics
-pubdategr_topics <- pubdategr_topics |> 
+top_words_for_topics <- top_words_for_topics |> 
     mutate(topic_label = case_when(
         topic==1 ~ "1: label",
         topic==2 ~ "2: label",
@@ -25,24 +25,19 @@ pubdategr_topics <- pubdategr_topics |>
     ))
 
 # Define colour palette
-colour_palette = c("#D72000FF","#EE6100FF","#FFAD0AFF","#1BB6AFFF","#9093A2FF","#132157FF")
+colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF","#00D1E0FF")
 
-# Plot
-pubdategr_topics |>
-    ggplot(aes(x=PubDateGr, y=gamma, colour=topic_label)) +
-    geom_line() +
-    geom_point() +
-    scale_x_continuous(
-        breaks = sort(unique(pubdategr_topics$PubDateGr)),
-        labels = sort(unique(pubdategr_topics$PubDateGr_label))) +
-    labs(
-        title="Proportions of E. Coli AMR Articles Associated with Each Topic Over Time",
-        y="Topic proportion",
-        x="Publication year",
-        colour="Topic") +
-    scale_colour_manual(values = colour_palette) +
-    theme_minimal() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+# Plot a horizontal bar graph for each topic, showing the top 20 words
+top_words_for_topics |> 
+    ggplot(aes(x=beta, y=reorder_within(term,beta,topic_label), fill=topic_label)) +
+    facet_wrap(~topic_label, scales="free_y") +
+    geom_col(show.legend=FALSE) +
+    scale_y_reordered() +
+    labs(x="Word-topic probability", y="",
+         title="Top Words in Each Topic") +
+    scale_fill_manual(values = colour_palette) +
+    theme_minimal()
+top_words_for_topics
 
 # Save the plot
 ggsave("results/topic_info.png")   

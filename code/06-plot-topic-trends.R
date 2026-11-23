@@ -24,7 +24,7 @@ pubdategr_topics <- pubdategr_topics |>
     ))
 
 # Define colour palette
-colour_palette = c("#D72000FF","#EE6100FF","#FFAD0AFF","#1BB6AFFF","#9093A2FF","#132157FF")
+colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF","#00D1E0FF")
 
 # Plot a line plot
 pubdategr_topics |>
