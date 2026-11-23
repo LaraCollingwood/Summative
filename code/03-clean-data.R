@@ -28,9 +28,42 @@ abstract_data <- abstract_data |>
  # Count frequency of each word --------------------------------------------------------------------------
 
 # These words are commonly used throughout all research, and so will not be included in topic modelling
-common_words <- tibble(word=c("antimicrobial","resistance","resistant","amr","antibiotic","antibiotics",
-                              "study","isolates","patient","patients","health","data","analysis","identified",
-                              "detected","samples","na"))
+common_words <- tibble(word=c(
+
+    # General academic terminology
+    "found", "observed", "reported",
+    "including", "compared", "determined",
+    "revealed", "demonstrated", "significant",
+    "significantly", "based", "obtained",
+    "performed", "investigated", "suggest",
+    "similar", "addition", "total",
+    "potential", "specific", "common",
+    "major", "highly", "single",
+    "multiple", "different", "related",
+    "due", "time", "period",
+
+    # Generic research terminology
+    "study", "studies", "result", "results",
+    "method", "methods", "analysis",
+    "data", "sample", "samples",
+    "identified", "detected", "collected",
+    "tested", "test", "testing",
+    "isolate","isolates","isolated",
+    "health",
+
+    # General AMR terminology
+    "antimicrobial", "antimicrobials",
+    "resistance", "resistant", "amr",
+    "antibiotic", "antibiotics",
+    "antibacterial",
+
+    # E. coli terminology
+    "escherichia", "coli", "bacteria",
+    "bacterial", "bacterium", "strain",
+    "strains",
+
+    "gene","genes","plasmid","plasmids"
+))
 
 word_count <- abstract_data |> 
     unnest_tokens(word, Abstract) |> 
