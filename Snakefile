@@ -34,7 +34,6 @@ rule convert_data_format:
         "code/02-convert-data-format.sh",
         "data/raw/pubmed_data_{PubDateGr}.xml"
     output:
-        "data/clean/pubmed_data_no_abstract_{PubDateGr}.tsv",
         "data/clean/abstracts_{PubDateGr}.tsv",
         #"logs/02-convert-data-format.txt"
     shell:
