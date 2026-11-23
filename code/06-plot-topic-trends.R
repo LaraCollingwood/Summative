@@ -1,11 +1,11 @@
-## Create line plot of trends
+## Create line plot of how topics changed over time
 ##
 ## Requires: data/clean/pubdategr_topics.tsv
 ## Creates: results/trends_plot.png
 
 library(tidyverse)
 
-# prevent Rplots.pdf from being generated
+# Prevent Rplots.pdf from being generated
 pdf(NULL) 
 
 # Read in data
@@ -26,7 +26,7 @@ pubdategr_topics <- pubdategr_topics |>
 # Define colour palette
 colour_palette = c("#D72000FF","#EE6100FF","#FFAD0AFF","#1BB6AFFF","#9093A2FF","#132157FF")
 
-# Plot
+# Plot a line plot
 pubdategr_topics |>
     ggplot(aes(x=PubDateGr, y=gamma, colour=topic_label)) +
     geom_line() +
@@ -43,5 +43,5 @@ pubdategr_topics |>
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 
-# save plot
+# Save plot
 ggsave("results/trends_plot.png") 
