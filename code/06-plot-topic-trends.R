@@ -1,6 +1,6 @@
 ## Create line plot of how topics changed over time
 ##
-## Requires: data/clean/pubdategr_topics.tsv
+## Requires: data/intermediates/pubdategr_topics.tsv
 ## Creates: results/trends_plot.png
 
 library(tidyverse)
@@ -9,7 +9,7 @@ library(tidyverse)
 pdf(NULL) 
 
 # Read in data
-pubdategr_topics <- readr::read_tsv("data/clean/pubdategr_topics.tsv")
+pubdategr_topics <- readr::read_tsv("data/intermediates/pubdategr_topics.tsv")
 
 # Add labels to topics
 pubdategr_topics <- pubdategr_topics |> 

@@ -2,7 +2,9 @@
 ## then see how well the articles from each publishing data group fit into these topics.
 ##
 ## Requires: data/clean/word_count_PUBDATEGR.tsv (for all publishing date groups)
-## Creates: LDA output
+## Creates: 
+## - data/intermediates/pubdategr_topics.tsv
+## - data/intermediates/top_words_for_topics.tsv
 
 library(tidyverse)
 library(tidytext)
@@ -55,5 +57,5 @@ top_words_for_topics <- word_topics |>
   
 # Save data as files ---------------------------------------------------------------------
 
-readr::write_tsv(pubdategr_topics, "data/clean/pubdategr_topics.tsv")
-readr::write_tsv(top_words_for_topics, "data/clean/top_words_for_topics.tsv")
+readr::write_tsv(pubdategr_topics, "data/intermediates/pubdategr_topics.tsv")
+readr::write_tsv(top_words_for_topics, "data/intermediates/top_words_for_topics.tsv")

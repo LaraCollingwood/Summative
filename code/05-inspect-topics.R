@@ -1,6 +1,6 @@
 ## Plot the top words from each topic
 ##
-## Requires: data/clean/top_words_for_topics.tsv
+## Requires: data/intermediates/top_words_for_topics.tsv
 ## Output: results/topic_info.png
 
 library(tidyverse)
@@ -10,7 +10,7 @@ library(tidytext)
 pdf(NULL) 
 
 # Read in the data
-top_words_for_topics <- readr::read_tsv("data/clean/top_words_for_topics.tsv")
+top_words_for_topics <- readr::read_tsv("data/intermediates/top_words_for_topics.tsv")
 
 # Add labels to topics
 top_words_for_topics <- top_words_for_topics |> 

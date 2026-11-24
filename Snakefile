@@ -58,17 +58,18 @@ rule topic_modelling:
         "code/04-topic-modelling.R",
         expand("data/clean/word_count_{PubDateGr}.tsv", PubDateGr=config["PUBDATEGR"])
     output:
-        "data/clean/pubdategr_topics.tsv",
-        "data/clean/top_words_for_topics.tsv"
+        "data/intermediates/pubdategr_topics.tsv",
+        "data/intermediates/top_words_for_topics.tsv"
     shell:
         """
+        mkdir -p data/intermediates
         Rscript code/04-topic-modelling.R
         """
 
 rule inspect_topics:
     input:
         "code/05-inspect-topics.R",
-        "data/clean/top_words_for_topics.tsv"
+        "data/intermediates/top_words_for_topics.tsv"
     output:
         "results/topic_info.png"
     shell:
@@ -80,7 +81,7 @@ rule plot_topic_trends:
     input:
         "code/06-plot-topic-trends.R",
         "results/topic_info.png",
-        "data/clean/pubdategr_topics.tsv"
+        "data/intermediates/pubdategr_topics.tsv"
     output:
         "results/trends_plot.png"
     shell:
@@ -104,6 +105,12 @@ rule cleanup_partial:
         rm -r data/clean
         else
         echo directory data/clean does not exist
+        fi
+
+        if [ -d data/intermediates ]; then
+        rm -r data/intermediates
+        else
+        echo directory data/intermediates does not exist
         fi
 
         if [ -d results ]; then
@@ -133,6 +140,12 @@ rule cleanup_full:
         rm -r data/clean
         else
         echo directory data/clean does not exist
+        fi
+
+        if [ -d data/intermediates ]; then
+        rm -r data/intermediates
+        else
+        echo directory data/intermediates does not exist
         fi
 
         if [ -d results ]; then
