@@ -20,8 +20,11 @@ rule download_data:
     input:
         "code/01-download-data.sh"
     output:
-        "data/raw/pubmed_data_{PubDateGr}.xml",
+        ensure("data/raw/pubmed_data_{PubDateGr}.xml", non_empty=True),
         #"logs/01-download-data.txt"
+    resources:
+        download_slots=1
+    retries: 3
     shell:
         """
         mkdir -p logs
