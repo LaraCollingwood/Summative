@@ -43,4 +43,4 @@ pubdategr_topics |>
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 
 # Save plot
-ggsave("results/trends_plot.png") 
+ggsave("results/trends_plot.png", width = 10, height = 7) 
