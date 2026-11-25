@@ -3,7 +3,8 @@ configfile: "config.yml"
 
 rule all:
  input:
-    "results/trends_plot.png"
+    "results/trends_plot.png",
+    "results/topic_info.png"
 
 rule setup:
     "create all directories"
@@ -83,7 +84,6 @@ rule inspect_topics:
 rule plot_topic_trends:
     input:
         "code/06-plot-topic-trends.R",
-        "results/topic_info.png",
         "data/intermediates/pubdategr_topics.tsv"
     output:
         "results/trends_plot.png"
