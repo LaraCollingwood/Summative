@@ -16,10 +16,13 @@ library(reshape2)
 
 # Combine all word counts
 files <- list.files(path = "data/clean/",pattern = "^word_count_.*\\.tsv$",full.names = TRUE)
-word_count_all <- map_dfr(files, read_tsv,show_col_types = FALSE)
+word_count_all <- map_dfr(files, read_tsv, show_col_types = FALSE)
 
 # Create a look up file containing the PubDateGr for each PMID
-PMID_pubdategr_id <- word_count_all |> select(PMID, PubDateGr) |> mutate(PMID = as.character(PMID))
+PMID_pubdategr_id <- word_count_all |> 
+    select(PMID, PubDateGr) |> 
+    mutate(PMID = as.character(PMID)) |> 
+    unique()
 
 
 # Creating the model ---------------------------------------------------------------------------------
