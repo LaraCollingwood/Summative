@@ -54,11 +54,17 @@ word_topics <- tidy(LDA_topic_model, matrix="beta")
 
 # Isolate the top words from each topic
 top_words_for_topics <- word_topics |> 
-  group_by(topic) |> 
-  slice_max(order_by=beta, n=20)
+    group_by(topic) |> 
+    slice_max(order_by=beta, n=20)
 
+# Isolate top articles fro each topic  
+top_PMID_for_topics <- PMID_topics |> 
+    group_by(topic) |> 
+    slice_max(order_by=gamma, n=10)
   
 # Save data as files ---------------------------------------------------------------------
 
 readr::write_tsv(pubdategr_topics, "data/intermediates/pubdategr_topics.tsv")
+
 readr::write_tsv(top_words_for_topics, "data/intermediates/top_words_for_topics.tsv")
+readr::write_tsv(top_PMID_for_topics, "data/intermediates/top_PMID_for_topics.tsv")
