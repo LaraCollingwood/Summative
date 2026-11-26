@@ -59,7 +59,7 @@ top_PMID_for_topics <- left_join(top_PMID_for_topics,abstracts_all) |>
 
 writeLines("TOP ARTICLES\n ", "results/topic_info2.txt")
 
-for (topicnum in 1:6){
+for (topicnum in 1:5){
     # Print a title for each topic
     cat(paste0("Topic: ",topicnum," ===========================\n\n"), file = "results/topic_info2.txt", append = TRUE)
   
