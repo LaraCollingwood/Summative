@@ -42,7 +42,6 @@ top_words_for_topics |>
     scale_fill_manual(values = colour_palette) +
     theme_minimal() +
     theme(axis.text.x = element_blank()) 
-top_words_for_topics
 
 # Save the plot
 ggsave("results/topic_info.png")   
