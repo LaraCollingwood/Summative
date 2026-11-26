@@ -6,8 +6,7 @@ Welcome to my Advanced Health Data Science summative coursework! This project wi
 
 The question being investigated is
 
-[!NOTE]
-How has focus of research topics in AMR of E. coli changed from 1980 to 2024?
+> How has focus of research topics in AMR of E. coli changed from 1980 to 2024?
 
 # Running the project
 
