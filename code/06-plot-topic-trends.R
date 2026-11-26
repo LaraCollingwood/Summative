@@ -26,9 +26,11 @@ colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF")
 
 # Plot a line plot
 pubdategr_topics |>
+    # Plot the points with lines between them
     ggplot(aes(x=PubDateGr, y=gamma, colour=topic_label, shape=topic_label, fill=topic_label)) +
     geom_line() +
     geom_point() +
+    # Make the labels readable
     scale_x_continuous(
         breaks = sort(unique(pubdategr_topics$PubDateGr)),
         labels = sort(unique(pubdategr_topics$PubDateGr_label))) +
@@ -37,6 +39,7 @@ pubdategr_topics |>
         y="Topic proportion",
         x="Publication year",
         colour="Topic", shape="Topic", fill="Topic") +
+    # Improve aesthetics
     scale_colour_manual(values = colour_palette) +
     scale_fill_manual(values = colour_palette) +
     scale_shape_manual(values = c(21,22,23,24,25)) +
