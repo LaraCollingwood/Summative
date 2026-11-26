@@ -1,6 +1,6 @@
 # Overview
 
-Welcome to my Advanced Health Data Science summative coursework! This project will explore research trends in antimicrobial resistance (AMR) in E. coli, by analysing data from PubMed and producing a data visualisation. It is intended to be ran on BluePebble.
+Welcome to my Advanced Health Data Science summative coursework! This project will explore research trends in antimicrobial resistance (AMR) in E. coli, by analysing data from PubMed and producing a data visualisation. It is intended to be ran on BluePebble, but can be ran locally too.
 
 # The research question
 
@@ -12,7 +12,7 @@ The question being investigated is
 
 ## 1. Cloning the git repository
 
-To clone the contents of this git repository, log into BluePebble, nagivate into your desired directory and run this command in terminal.
+To clone the contents of this git repository, log into BluePebble (optional), nagivate into your desired directory and run this command in terminal.
 
 ```
 git clone https://github.com/LaraCollingwood/Summative.git
@@ -38,9 +38,14 @@ conda activate env_2872299
 
 ## 3. Run the SnakeMake pipeline
 
-Run the SnakeMake pipeline with 
+If you are using BluePebble, run the SnakeMake pipeline with 
 ```
 snakemake --profile .
+```
+
+If you are not using BluePebble and instead working locally, run the SnakeMake pipleline with 
+```
+snakemake -c1
 ```
 
 
