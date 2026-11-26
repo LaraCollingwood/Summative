@@ -18,13 +18,7 @@ top_words_for_topics <- readr::read_tsv("data/intermediates/top_words_for_topics
 
 # Add labels to topics
 top_words_for_topics <- top_words_for_topics |> 
-    mutate(topic_label = case_when(
-        topic==1 ~ "1: Livestock",
-        topic==2 ~ "2: Biological\nmechanisms",
-        topic==3 ~ "3: Water and\nthe environment",
-        topic==4 ~ "4: Genomics",
-        topic==5 ~ "5: Patients",   
-))
+    mutate(topic_label = paste0("Topic ", topic))
 
 # Define colour palette
 colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF")
