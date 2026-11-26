@@ -2,11 +2,17 @@
 
 Welcome to my Advanced Health Data Science summative coursework! This project will explore research trends in antimicrobial resistance (AMR) in E. coli, by analysing data from PubMed and producing a data visualisation. It is intended to be ran on BluePebble, but can be ran locally too.
 
-# The research question
+# Background
 
 The question being investigated is
 
-> How has focus of research topics in AMR of E. coli changed from 1980 to 2024?
+> How has focus of research topics in antimicrobial resistance of E. coli changed from 1980 to 2024?
+
+E. coli (Escherichia coli) is a bacteria found in the intestines of people and animals that can cause symptoms such as UTIs, diarrhea and vommitting. It is spread though contaminated water, undercooked food and contact with farm animals. A treatment for E. coli infection is antibiotics.  
+
+However, some strains of the microbe have evolved to survive these medicines designed to kill them, making them very difficult to treat. This is known as antimicrobial resistance, or AMR. As we are referring to bacteria, it can also be called antibacterial resistance. 
+
+This project aims to explore how the focus of research in this area has evolved in the past 45 years.
 
 # Running the project
 
@@ -47,7 +53,6 @@ If you are not using BluePebble and instead working locally, run the SnakeMake p
 ```
 snakemake -c1
 ```
-
 
 # Code files
 
