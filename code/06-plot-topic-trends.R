@@ -14,11 +14,11 @@ pubdategr_topics <- readr::read_tsv("data/intermediates/pubdategr_topics.tsv")
 # Add labels to topics
 pubdategr_topics <- pubdategr_topics |> 
     mutate(topic_label = case_when(
-        topic==1 ~ "1: Livestock",
-        topic==2 ~ "2: Biological\nmechanisms",
-        topic==3 ~ "3: Water and\nthe environment",
-        topic==4 ~ "4: Genomics",
-        topic==5 ~ "5: Patients",   
+        topic==1 ~ "\n1: AMR E.coli\nwithin livestock\n",
+        topic==2 ~ "\n2: Biological\nmechanisms\nfor resistance\n",
+        topic==3 ~ "\n3: Detection and\nremoval from the\nenvironment\n",
+        topic==4 ~ "\n4: Tracing\ntransmission\nacross hosts\n",
+        topic==5 ~ "\n5: AMR E.coli\nwithin humans\n",   
 ))
 
 # Define colour palette
@@ -35,8 +35,8 @@ pubdategr_topics |>
         breaks = sort(unique(pubdategr_topics$PubDateGr)),
         labels = sort(unique(pubdategr_topics$PubDateGr_label))) +
     labs(
-        title="Proportions of E. Coli AMR Articles Associated with Each Topic Over Time",
-        y="Topic proportion",
+        title="Research topic trends in E. coli antimicrobial resistance, 1980-2024",
+        y="Mean topic proportion",
         x="Publication year",
         colour="Topic", shape="Topic", fill="Topic",
         caption="Disclosure: Topic labels are human-written after inspecting the topic_info file; labels may not be accurate if input data is changed.") +
