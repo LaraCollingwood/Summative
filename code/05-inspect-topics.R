@@ -27,14 +27,16 @@ top_words_for_topics <- top_words_for_topics |>
 ))
 
 # Define colour palette
-colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF","#00D1E0FF")
+colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF")
 
 # Plot a horizontal bar graph for each topic, showing the top 20 words
 top_words_for_topics |> 
+    # Create the plot
     ggplot(aes(x=beta, y=reorder_within(term,beta,topic_label), fill=topic_label)) +
     facet_wrap(~topic_label, scales="free_y") +
     geom_col(show.legend=FALSE) +
     scale_y_reordered() +
+    # Improve the aesthetics
     labs(x="Word-topic probability", y="",
          title="Top Words in Each Topic") +
     scale_fill_manual(values = colour_palette) +
