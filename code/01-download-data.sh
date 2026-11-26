@@ -21,7 +21,12 @@ end_date=$((start_date + 4))
 
 # If we are running a test, limit the number of files selected
 if [ "$TESTVAR" = "True" ]; then
-    FILELIM="-start 1 -stop 2"
+    # Number of files is 3 for 2015 and 2020, and 2 for everything else (20 total)
+    if [ "$PUBDATEGR" -gt 2010 ]; then
+        FILELIM="-start 1 -stop 3"
+    else
+        FILELIM="-start 1 -stop 2" 
+    fi
 else
     FILELIM=""
 fi
