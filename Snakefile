@@ -21,8 +21,7 @@ rule download_data:
     input:
         "code/01-download-data.sh"
     output:
-        ensure("data/raw/pubmed_data_{PubDateGr}.xml", non_empty=True),
-        #"logs/01-download-data.txt"
+        ensure("data/raw/pubmed_data_{PubDateGr}.xml", non_empty=True)
     resources:
         download_slots=1
     retries: 3
@@ -30,7 +29,7 @@ rule download_data:
         """
         mkdir -p logs
         mkdir -p data/raw
-        bash code/01-download-data.sh {wildcards.PubDateGr} #> logs/01-download-data.txt
+        bash code/01-download-data.sh {wildcards.PubDateGr} > logs/download_log_{wildcards.PubDateGr}.txt
         """
 
 rule convert_data_format:
