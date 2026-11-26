@@ -22,11 +22,11 @@ pubdategr_topics <- pubdategr_topics |>
 ))
 
 # Define colour palette
-colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF","#00D1E0FF")
+colour_palette = c("#FF1F3DFF","#1F6BFFFF","#00D45AFF","#FFB000FF","#B200FFFF")
 
 # Plot a line plot
 pubdategr_topics |>
-    ggplot(aes(x=PubDateGr, y=gamma, colour=topic_label)) +
+    ggplot(aes(x=PubDateGr, y=gamma, colour=topic_label, shape=topic_label, fill=topic_label)) +
     geom_line() +
     geom_point() +
     scale_x_continuous(
@@ -36,8 +36,10 @@ pubdategr_topics |>
         title="Proportions of E. Coli AMR Articles Associated with Each Topic Over Time",
         y="Topic proportion",
         x="Publication year",
-        colour="Topic") +
+        colour="Topic", shape="Topic", fill="Topic") +
     scale_colour_manual(values = colour_palette) +
+    scale_fill_manual(values = colour_palette) +
+    scale_shape_manual(values = c(21,22,23,24,25)) +
     theme_minimal() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
 
