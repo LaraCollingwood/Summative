@@ -18,8 +18,7 @@ pubdategr_topics <- pubdategr_topics |>
         topic==2 ~ "2: Biological\nmechanisms",
         topic==3 ~ "3: Water and\nthe environment",
         topic==4 ~ "4: Genomics",
-        topic==5 ~ "5: Resistance\ngene detection",
-        topic==6 ~ "6: Patients",   
+        topic==5 ~ "5: Patients",   
 ))
 
 # Define colour palette

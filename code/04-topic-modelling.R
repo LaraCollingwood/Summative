@@ -31,7 +31,7 @@ PMID_pubdategr_id <- word_count_all |>
 dtm_matrix <- word_count_all |> cast_dtm(PMID, word, n)
 
 # Create a LDA topic model
-LDA_topic_model <- LDA(dtm_matrix, k=6, control=list(seed=123))
+LDA_topic_model <- LDA(dtm_matrix, k=5, control=list(seed=123))
 
 # For each abstract, see how well it fits into each topic
 PMID_topics <- tidy(LDA_topic_model, matrix="gamma") |>
