@@ -1,8 +1,13 @@
 # Overview
 
-Welcome to my Advanced Health Data Science summative coursework! This project will explore research trends in antimicrobial resistance, by analysing data from PubMed and producing a data visualisation. It is intended to be ran on BluePebble.
+Welcome to my Advanced Health Data Science summative coursework! This project will explore research trends in antimicrobial resistance (AMR) in E. coli, by analysing data from PubMed and producing a data visualisation. It is intended to be ran on BluePebble.
 
-Note: currently incomplete
+# The research question
+
+The question being investigated is
+
+[!NOTE]
+How has focus of research topics in AMR of E. coli changed from 1980 to 2024?
 
 # Running the project
 
@@ -44,7 +49,7 @@ snakemake --profile .
 
 ## 01-download-data.sh
 
-Downloads article data from PubMed and saves as an xml. The search criteria requires articles to be in the selected time frame, have an abstract, mention AMR in the title and mention e. coli in the title.
+Downloads article data from PubMed and saves as an xml. The search criteria requires articles to be in the selected time frame, have an abstract, mention AMR in the title and mention E. coli in the title.
 
 - Input: PUBDATEGR variable
 - Output: data/raw/pubmed_data_PUBDATGR.xml
