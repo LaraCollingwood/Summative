@@ -54,6 +54,18 @@ If you are not using BluePebble and instead working locally, run the SnakeMake p
 snakemake -c1
 ```
 
+# Using the TEST option
+
+If you only want to run with 20 articles for testing purposes, enter the config.yml file and change
+
+> TEST: false
+
+to 
+
+> TEST: true
+
+Now the pipeline will only extract 20 PubMed articles. Note that the topic labels may no longer be applicable.
+
 # Code files
 
 ## 01-download-data.sh
