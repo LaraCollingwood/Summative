@@ -1,4 +1,4 @@
-## Plot the top words from each topic
+## Plots the top words and extracts the top articles from each topic.
 ##
 ## Requires: data/intermediates/top_words_for_topics.tsv
 ## Output: 

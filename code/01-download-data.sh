@@ -1,6 +1,8 @@
 #!/bin/bash
 
-## Download article data from PubMed and save as xml
+## Downloads article data from PubMed and saves as an xml.
+## The search criteria requires articles to be in the selected time frame, have an abstract, 
+## mention AMR in the title and mention e. coli in the title.
 ##
 ## Input: PUBDATEGR variable
 ## Output: data/raw/pubmed_data_PUBDATGR.xml

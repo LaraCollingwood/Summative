@@ -1,10 +1,12 @@
 ## Uses Latent Dirichlet Allocation to pick out 6 key topics, 
 ## then see how well the articles from each publishing data group fit into these topics.
+## Also picks out the top words and top PMIDs from each topic.
 ##
 ## Requires: data/clean/word_count_PUBDATEGR.tsv (for all publishing date groups)
 ## Creates: 
 ## - data/intermediates/pubdategr_topics.tsv
 ## - data/intermediates/top_words_for_topics.tsv
+## - data/intermediates/top_PMID_for_topics.tsv
 
 library(tidyverse)
 library(tidytext)

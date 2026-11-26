@@ -1,4 +1,4 @@
-## Convert abstract data into word counts
+## Converts abstract data into word counts, removing numbers, stop words and pre-specified common words.
 ##
 ## Input: PUBDATEGR variable
 ## Requires: data/clean/abstracts_PUBDATEGR.tsv

@@ -1,4 +1,4 @@
-## Create line plot of how topics changed over time
+## Creates a line plot of how topics changed over time.
 ##
 ## Requires: data/intermediates/pubdategr_topics.tsv
 ## Creates: results/trends_plot.png
