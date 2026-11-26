@@ -2,7 +2,7 @@
 
 Welcome to my Advanced Health Data Science summative coursework! This project will explore research trends in antimicrobial resistance (AMR) in E. coli, by analysing data from PubMed and producing a data visualisation. It is intended to be ran on BluePebble, but can be ran locally too.
 
-# Background
+# Research question and background
 
 The question being investigated is
 
