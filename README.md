@@ -39,15 +39,15 @@ Run the SnakeMake pipeline with
 snakemake --profile .
 ```
 
+
 # Code files
 
 ## 01-download-data.sh
 
-Downloads article data from PubMed and saves as an xml.
-The search criteria requires articles to be in the selected time frame, have an abstract, mention AMR in the title and mention e. coli in the title.
+Downloads article data from PubMed and saves as an xml. The search criteria requires articles to be in the selected time frame, have an abstract, mention AMR in the title and mention e. coli in the title.
 
-Input: PUBDATEGR variable
-Output: data/raw/pubmed_data_PUBDATGR.xml
+- Input: PUBDATEGR variable
+- Output: data/raw/pubmed_data_PUBDATGR.xml
 
 To run independently, for a chosen timeframe (e.g. 1980-1984), input into terminal
 ```
@@ -58,9 +58,9 @@ bash code/01-download-data.sh 1980
 
 Converts the downloaded xml data into a tsv format, keeping only PMID and abstracts.
 
-Input: PUBDATEGR variable
-Requires: data/raw/pubmed_data_PUBDATEGR.xml
-Creates: data/clean/abstracts_PUBDATEGR.tsv
+- Input: PUBDATEGR variable
+- Requires: data/raw/pubmed_data_PUBDATEGR.xml
+- Creates: data/clean/abstracts_PUBDATEGR.tsv
 
 To run independently, for a chosen timeframe (e.g. 1980-1984), input into terminal
 ```
@@ -71,9 +71,9 @@ bash code/02-convert-data-format.sh 1980
 
 Converts abstract data into word counts, removing numbers, stop words and pre-specified common words.
 
-Input: PUBDATEGR variable
-Requires: data/clean/abstracts_PUBDATEGR.tsv
-Creates: data/clean/word_count.tsv
+- Input: PUBDATEGR variable
+- Requires: data/clean/abstracts_PUBDATEGR.tsv
+- Creates: data/clean/word_count.tsv
 
 To run independently, for a chosen timeframe (e.g. 1980-1984), input into terminal
 ```
@@ -99,10 +99,10 @@ Rscript code/04-topic-modelling.R
 
 Plots the top words and extracts the top articles from each topic.
 
-Requires: data/intermediates/top_words_for_topics.tsv
-Output: 
-* results/topic_info.png 
-* results/topic_info2.txt 
+- Requires: data/intermediates/top_words_for_topics.tsv
+- Output: 
+    - results/topic_info.png 
+    - results/topic_info2.txt 
 
 To run independently, input into terminal
 ```
@@ -113,8 +113,8 @@ Rscript code/05-inspect-topics.R
 
 Creates a line plot of how topics changed over time.
 
-Requires: data/intermediates/pubdategr_topics.tsv
-Creates: results/trends_plot.png
+- Requires: data/intermediates/pubdategr_topics.tsv
+- Creates: results/trends_plot.png
 
 To run independently, input into terminal
 ```
