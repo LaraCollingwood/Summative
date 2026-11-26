@@ -148,3 +148,30 @@ To run independently, input into terminal
 ```
 Rscript code/06-plot-topic-trends.R
 ```
+# Other files
+
+## .gitignore
+
+Specifies which folders are not uploaded onto GitHub.
+
+## config.yaml
+
+The configuration settings for submitting the Snakefile to BluePebble.
+
+## config.yml
+
+Contains parameters that will be passed into the script:
+- PUBDATEGR is the list of publishing years that will be analysed. Each group spans a 5 year period starting from that year. (e.g. PUBDATEGR=2010 refers to the span on years 2010-2014 inclusive).
+- TEST determines if the code is ran for all the available abtracts (TEST=true) or just 20 abstracts for testing purposes (TEST=false).
+
+## environment.yml
+
+Contains the software and their versions required for this pipeline. Must be activated (see instructions above) before running anything.
+
+## README.md
+
+What you are reading right now!
+
+## Snakefile
+
+Specifies the order in which the scripts need to be run, and the requirements. Provides an interface to easily run the entire project.
