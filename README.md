@@ -60,7 +60,9 @@ snakemake -c1
 
 Downloads article data from PubMed and saves as an xml. The search criteria requires articles to be in the selected time frame, have an abstract, mention AMR in the title and mention E. coli in the title.
 
-- Input: PUBDATEGR variable
+- Input: 
+    - PUBDATEGR variable
+    - TESTVAR variable
 - Output: data/raw/pubmed_data_PUBDATGR.xml
 
 To run independently, for a chosen timeframe (e.g. 1980-1984), input into terminal

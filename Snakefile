@@ -29,7 +29,7 @@ rule download_data:
         """
         mkdir -p logs
         mkdir -p data/raw
-        bash code/01-download-data.sh {wildcards.PubDateGr} > logs/download_log_{wildcards.PubDateGr}.txt
+        bash code/01-download-data.sh {wildcards.PubDateGr} true > logs/download_log_{wildcards.PubDateGr}.txt
         """
 
 rule convert_data_format:
