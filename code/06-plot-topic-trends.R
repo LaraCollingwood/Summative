@@ -38,7 +38,8 @@ pubdategr_topics |>
         title="Proportions of E. Coli AMR Articles Associated with Each Topic Over Time",
         y="Topic proportion",
         x="Publication year",
-        colour="Topic", shape="Topic", fill="Topic") +
+        colour="Topic", shape="Topic", fill="Topic",
+        caption="Disclosure: Topic labels are human-written after inspecting the topic_info file; labels may not be accurate if input data is changed.") +
     # Improve aesthetics
     scale_colour_manual(values = colour_palette) +
     scale_fill_manual(values = colour_palette) +
