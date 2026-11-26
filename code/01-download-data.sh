@@ -20,7 +20,7 @@ start_date=${PUBDATEGR}
 end_date=$((start_date + 4))
 
 # If we are running a test, limit the number of files selected
-if [ "$TESTVAR" = "true" ]; then
+if [ "$TESTVAR" = "True" ]; then
     FILELIM="-start 1 -stop 2"
 else
     FILELIM=""
