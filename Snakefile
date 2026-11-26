@@ -22,14 +22,15 @@ rule download_data:
         "code/01-download-data.sh"
     output:
         ensure("data/raw/pubmed_data_{PubDateGr}.xml", non_empty=True)
-    resources:
+    params: testvar=config["TEST"]
+    resources: 
         download_slots=1
     retries: 3
     shell:
         """
         mkdir -p logs
         mkdir -p data/raw
-        bash code/01-download-data.sh {wildcards.PubDateGr} true > logs/download_log_{wildcards.PubDateGr}.txt
+        bash code/01-download-data.sh {wildcards.PubDateGr} {params.testvar} > logs/download_log_{wildcards.PubDateGr}.txt
         """
 
 rule convert_data_format:
