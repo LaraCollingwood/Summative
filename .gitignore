@@ -1,6 +1,5 @@
-# Sensitive data
-logs/*
 data/*
 results/*
+logs/*
 rough_work/*
 .snakemake
