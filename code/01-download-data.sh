@@ -7,7 +7,7 @@
 ## Input: 
 ## - PUBDATEGR variable
 ## - TESTVAR variable
-## Output: data/raw/pubmed_data_PUBDATGR.xml
+## Creates: data/raw/pubmed_data_PUBDATGR.xml
 
 PUBDATEGR=$1
 TESTVAR=$2

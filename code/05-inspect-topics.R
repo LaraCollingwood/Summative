@@ -1,7 +1,7 @@
 ## Plots the top words and extracts the top articles from each topic.
 ##
 ## Requires: data/intermediates/top_words_for_topics.tsv
-## Output: 
+## Creates: 
 ## - results/topic_info.png
 ## - results/topic_info2.txt
 

@@ -75,7 +75,7 @@ Downloads article data from PubMed and saves as an xml. The search criteria requ
 - Input: 
     - PUBDATEGR variable
     - TESTVAR variable
-- Output: data/raw/pubmed_data_PUBDATGR.xml
+- Creates: data/raw/pubmed_data_PUBDATGR.xml
 
 To run independently, for a chosen timeframe (e.g. 1980-1984), input into terminal
 ```
@@ -128,7 +128,7 @@ Rscript code/04-topic-modelling.R
 Plots the top words and extracts the top articles from each topic.
 
 - Requires: data/intermediates/top_words_for_topics.tsv
-- Output: 
+- Creates: 
     - results/topic_info.png 
     - results/topic_info2.txt 
 
