@@ -1,5 +1,6 @@
 data/*
 results/*
 logs/*
-rough_work/*
 .snakemake
+rough_work/*
+cover_sheet.docx
