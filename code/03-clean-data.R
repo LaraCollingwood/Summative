@@ -44,11 +44,10 @@ common_words <- tibble(word=c(
 
     # General AMR words
     "antimicrobial", "antimicrobials", "resistance", "resistant", "amr", "antibiotic", 
-    "antibiotics", "antibacterial",
+    "antibiotics", "antibacterial", "gene","genes","plasmid","plasmids",
 
     # E. coli words
-    "escherichia", "coli", "bacteria", "bacterial", "bacterium", "strain", "strains", 
-    "gene","genes","plasmid","plasmids"
+    "escherichia", "coli", "bacteria", "bacterial", "bacterium", "strain", "strains"
 ))
 
 # For each article, get the frequency of each word (not including numbers, stop words and common words)
