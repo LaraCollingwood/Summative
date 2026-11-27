@@ -39,7 +39,7 @@ pubdategr_topics |>
         y="Mean topic proportion",
         x="Publication year",
         colour="Topic", shape="Topic", fill="Topic",
-        caption="Disclosure: Topic labels are human-written after inspecting the topic_info file; labels may not be accurate if input data is changed.") +
+        caption="Disclosure: Topic labels are human-written after inspecting the topic_info files; labels may not be accurate if input data is changed.") +
     # Improve aesthetics
     scale_colour_manual(values = colour_palette) +
     scale_fill_manual(values = colour_palette) +
