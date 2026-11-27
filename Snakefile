@@ -38,12 +38,11 @@ rule convert_data_format:
         "code/02-convert-data-format.sh",
         "data/raw/pubmed_data_{PubDateGr}.xml"
     output:
-        "data/clean/abstracts_{PubDateGr}.tsv",
-        #"logs/02-convert-data-format.txt"
+        "data/clean/abstracts_{PubDateGr}.tsv"
     shell:
         """
         mkdir -p data/clean
-        bash code/02-convert-data-format.sh {wildcards.PubDateGr} #> logs/02-convert-data-format.txt
+        bash code/02-convert-data-format.sh {wildcards.PubDateGr} 
         """
 
 rule clean_data:
